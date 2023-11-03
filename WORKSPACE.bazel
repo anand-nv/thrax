@@ -40,15 +40,28 @@ http_archive(
     urls = ["https://github.com/google/googletest/archive/main.zip"],
 )
 
+http_archive(
+    name = "bazel_skylib",
+    sha256 = "66ffd9315665bfaafc96b52278f57c7e2dd09f5ede279ea6d39b2be471e7e3aa",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.4.2/bazel-skylib-1.4.2.tar.gz",
+        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.4.2/bazel-skylib-1.4.2.tar.gz",
+    ],
+)
+
+load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+
+bazel_skylib_workspace()
+
 # -------------------------------------------------------------------------
 # OpenFst: See
 #    http://www.openfst.org/twiki/pub/FST/FstDownload/README
 # -------------------------------------------------------------------------
-openfst_version = "1.8.2"
+openfst_version = "1.8.2p2"
 
 http_archive(
     name = "org_openfst",
-    urls = ["https://www.openfst.org/twiki/pub/FST/FstDownload/openfst-%s.tar.gz" % openfst_version],
-    sha256 = "de987bf3624721c5d5ba321af95751898e4f4bb41c8a36e2d64f0627656d8b42",
+    urls = ["https://github.com/anand-nv/openfst/archive/refs/tags/v%s.tar.gz" % openfst_version],
+    sha256 = "353eeb31f02ea8da3d038bb571494745ce77b4b1ff72f92b368744cc25b14bdb",
     strip_prefix = "openfst-%s" % openfst_version,
 )

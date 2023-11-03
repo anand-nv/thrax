@@ -16,8 +16,10 @@
 
 #include <iterator>
 #include <map>
+#include <memory>
 #include <string>
 
+#include <fst/log.h>
 #include <thrax/identifier-node.h>
 #include <fst/compat.h>
 
@@ -46,6 +48,7 @@ Namespace* Namespace::AddSubNamespace(const std::string& filename,
   if (!it_success.second) {
     LOG(FATAL) << "Cannot reuse the same alias for two files: " << alias
                << " in  " << filename;
+    return nullptr;  // Just to silence -Wreturn-type error.
   } else {
     // NB: This is the value of `new_namespace` now that it's been moved into
     // the alias map.

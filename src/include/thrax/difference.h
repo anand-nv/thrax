@@ -46,7 +46,7 @@ class Difference : public BinaryFstFunction<Arc> {
  protected:
   std::unique_ptr<Transducer> BinaryFstExecute(
       const Transducer& left, const Transducer& right,
-      const std::vector<std::unique_ptr<DataType>>& args) final {
+      const std::vector<std::unique_ptr<DataType>>& args) const final {
     if (args.size() != 2) {
       std::cout << "Difference: Expected 2 arguments but got " << args.size()
                 << std::endl;
@@ -87,7 +87,7 @@ class Difference : public BinaryFstFunction<Arc> {
       auto optimized_right =
           Optimize<Arc>::ActuallyOptimizeDifferenceRhs(right, true);
       return std::make_unique<::fst::DifferenceFst<Arc>>(left,
-                                                              *optimized_right);
+                                                             *optimized_right);
     }
   }
 

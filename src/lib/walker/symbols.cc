@@ -14,9 +14,9 @@
 //
 #include <thrax/symbols.h>
 
-#include <stdio.h>
-
 #include <cstdint>
+#include <cstdio>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -170,7 +170,7 @@ void SymbolTableBuilder::AddToUtf8SymbolTable(std::string symbol,
 }
 
 void SymbolTableBuilder::GenerateByteSymbolTable() {
-  ::fst::MutexLock lock(&map_mutex_);
+   ::fst::MutexLock lock(&map_mutex_);
   byte_symbols_ =
       std::make_unique<::fst::SymbolTable>(kByteSymbolTableName);
   byte_symbols_->AddSymbol("<epsilon>", 0);
@@ -187,7 +187,7 @@ void SymbolTableBuilder::GenerateByteSymbolTable() {
 }
 
 void SymbolTableBuilder::GenerateUtf8SymbolTable() {
-  ::fst::MutexLock lock(&map_mutex_);
+   ::fst::MutexLock lock(&map_mutex_);
   utf8_symbols_ =
       std::make_unique<::fst::SymbolTable>(kUtf8SymbolTableName);
   utf8_symbols_->AddSymbol("<epsilon>", 0);

@@ -24,7 +24,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # -------------------------------------------------------------------------
 
 http_archive(
-    name = "io_abseil_cpp",
+    name = "com_google_absl",
     strip_prefix = "abseil-cpp-master",
     urls = ["https://github.com/abseil/abseil-cpp/archive/master.zip"],
 )
@@ -51,16 +51,15 @@ http_archive(
 
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
-
 # -------------------------------------------------------------------------
 # OpenFst: See
 #    http://www.openfst.org/twiki/pub/FST/FstDownload/README
 # -------------------------------------------------------------------------
-openfst_version = "1.8.0"
+openfst_version = "1.8.1"
 
 http_archive(
     name = "org_openfst",
     urls = ["https://github.com/anand-nv/openfst/archive/refs/tags/v%s.tar.gz" % openfst_version],
-    sha256 = "b6ec8b970c8832abf1157c1cbd3f0a1ff61b3645f1c96fe759e4ace07d51d7c7",
+    sha256 = "eefa2eca3504a38a1dc87a16d43bdb609d0d41d938f09268125e76cce0488988",
     strip_prefix = "openfst-%s" % openfst_version,
 )
